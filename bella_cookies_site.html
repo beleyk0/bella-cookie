@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bella Cookies | Peça seus cookies</title>
+<style>
+:root{--wine:#7d3546;--pink:#e7a4b3;--soft:#fae9e9;--cream:#fffaf4;--ink:#40242b;--muted:#806b6e}
+*{box-sizing:border-box}body{margin:0;background:var(--cream);color:var(--ink);font-family:Arial,Helvetica,sans-serif}
+header{background:var(--soft);padding:18px 6%;display:flex;align-items:center;justify-content:space-between;gap:20px;border-bottom:1px solid #f0d5d8;position:sticky;top:0;z-index:5}
+.brand{display:flex;align-items:center;gap:12px;color:var(--wine);font-weight:900;font-size:25px}.brand-mark{width:48px;height:48px;border-radius:50%;background:#fff;border:2px solid var(--pink);display:grid;place-items:center;font-size:27px}
+nav{display:flex;gap:22px}nav a{color:var(--wine);text-decoration:none;font-weight:700;font-size:14px}
+.cart-btn,.primary{background:var(--wine);color:#fff;border:0;border-radius:30px;padding:12px 19px;font-weight:700;cursor:pointer}
+.hero{padding:70px 7%;display:grid;grid-template-columns:1.15fr .85fr;align-items:center;gap:35px;background:linear-gradient(120deg,#f9e6e6,#fffaf4)}
+.eyebrow{color:var(--wine);font-size:12px;letter-spacing:3px;font-weight:800;text-transform:uppercase}
+h1{font-family:Georgia,serif;font-size:clamp(42px,6vw,68px);line-height:1.02;margin:14px 0;color:var(--wine)}
+.hero p{font-size:18px;line-height:1.6;color:#684b51;max-width:520px}.hero-art{min-height:300px;border-radius:48% 52% 44% 56%;background:#e8b4bd;display:grid;place-items:center;position:relative;box-shadow:inset 0 0 0 14px #f8dede}
+.big-cookie{width:230px;height:230px;border-radius:50%;background:radial-gradient(circle at 28% 25%,#eac08d,#b87543 70%);border:10px solid #a9683c;box-shadow:0 16px 25px #8c4c3c55;position:relative}
+.big-cookie:before{content:"";position:absolute;inset:15px;border-radius:50%;background:radial-gradient(circle at 20% 30%,#61301f 0 7px,transparent 8px),radial-gradient(circle at 68% 22%,#61301f 0 8px,transparent 9px),radial-gradient(circle at 45% 58%,#61301f 0 9px,transparent 10px),radial-gradient(circle at 78% 72%,#61301f 0 7px,transparent 8px),radial-gradient(circle at 22% 78%,#61301f 0 6px,transparent 7px)}
+.sticker{position:absolute;right:2%;bottom:10%;background:#fffaf4;color:var(--wine);padding:15px 20px;border-radius:18px;font-family:Georgia,serif;font-weight:bold;transform:rotate(7deg);box-shadow:0 8px 18px #73394b22}
+section{padding:58px 7%}.section-head{text-align:center;margin-bottom:30px}.section-head h2{font: bold 38px Georgia,serif;color:var(--wine);margin:8px}
+.section-head p{color:var(--muted)}
+.products{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.product{background:#fff;border:1px solid #f1dfe0;border-radius:22px;overflow:hidden;box-shadow:0 8px 24px #61333b0c}
+.product-art{height:165px;display:grid;place-items:center;background:linear-gradient(135deg,#f8e3e3,#f4cbd0);font-size:76px}
+.product:nth-child(2n) .product-art{background:linear-gradient(135deg,#f6e9d9,#e9c5a4)}
+.product-body{padding:18px}.product h3{margin:0 0 7px;color:var(--wine);font: bold 23px Georgia,serif}.product p{margin:0 0 14px;color:var(--muted);font-size:14px;min-height:36px}.price{font-size:19px;font-weight:800;color:var(--ink)}
+.product-foot{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:16px}
+.add{background:var(--pink);color:#512b35;border:0;border-radius:22px;padding:10px 15px;font-weight:800;cursor:pointer}
+.combo{background:var(--wine);color:white;border-radius:28px;padding:32px;display:flex;justify-content:space-between;align-items:center;gap:20px}
+.combo h2{font: bold 34px Georgia,serif;margin:0 0 8px}.combo p{color:#f9e7e9;margin:0}.combo .price{color:#fff;font-size:27px}
+.order-area{display:grid;grid-template-columns:1fr 1fr;gap:25px;align-items:start}
+.panel{background:#fff;border:1px solid #f0dcdf;border-radius:22px;padding:23px}
+.panel h3{margin:0 0 15px;color:var(--wine);font: bold 25px Georgia,serif}
+.cart-line{display:flex;justify-content:space-between;gap:10px;padding:10px 0;border-bottom:1px solid #f3e7e8;font-size:14px}
+.total{display:flex;justify-content:space-between;font-weight:900;font-size:20px;margin:18px 0}
+label{display:block;font-size:13px;font-weight:700;color:#684b51;margin:12px 0 6px}
+input,select,textarea{width:100%;padding:12px;border:1px solid #e7cdd1;border-radius:12px;background:#fffdfb;font:inherit;color:var(--ink)}
+textarea{min-height:75px;resize:vertical}
+.primary{width:100%;margin-top:14px;font-size:15px}
+.note{font-size:12px;color:var(--muted);line-height:1.5}
+footer{text-align:center;background:#f7e5e6;padding:28px;color:var(--wine);font-size:13px}
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#40242b;color:white;padding:12px 18px;border-radius:25px;display:none;z-index:9}
+@media(max-width:760px){header{padding:13px 5%}nav{display:none}.hero{grid-template-columns:1fr;padding:48px 6%}.hero-art{min-height:250px}.big-cookie{width:185px;height:185px}.products{grid-template-columns:1fr 1fr}.order-area{grid-template-columns:1fr}.combo{align-items:flex-start;flex-direction:column}}
+@media(max-width:480px){.products{grid-template-columns:1fr}.product-art{height:145px}.brand{font-size:21px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="brand"><span class="brand-mark">🍪</span><span>Bella <small style="display:block;font-size:10px;letter-spacing:4px;margin-top:-2px">COOKIES</small></span></div>
+  <nav><a href="#sabores">Sabores</a><a href="#combo">Combo</a><a href="#pedido">Faça seu pedido</a></nav>
+  <button class="cart-btn" onclick="document.getElementById('pedido').scrollIntoView({behavior:'smooth'})">🛍️ Sacola <span id="cartCount">0</span></button>
+</header>
+<main>
+<section class="hero">
+  <div><div class="eyebrow">Feitos com carinho, do jeitinho Bella</div><h1>Um cookie,<br>mil motivos<br>pra sorrir.</h1><p>Cookies artesanais, deliciosos por fora e macios por dentro. Escolha seu sabor favorito e monte seu pedido!</p><a href="#sabores"><button class="primary" style="width:auto;padding:14px 24px">Quero escolher meus cookies</button></a></div>
+  <div class="hero-art"><div class="big-cookie"></div><div class="sticker">feito para<br>adoçar seu dia ♡</div></div>
+</section>
+<section id="sabores">
+  <div class="section-head"><div class="eyebrow">Nosso cardápio</div><h2>Escolha seu favorito</h2><p>Qual vai ser o seu Bella de hoje?</p></div>
+  <div class="products" id="productGrid"></div>
+</section>
+<section id="combo">
+  <div class="combo"><div><div class="eyebrow" style="color:#f5cbd2">Queridinho da casa</div><h2>Combo Bella ♡</h2><p>2 cookies + 1 soda italiana</p></div><div><div class="price">R$ 27,00</div><button class="add" onclick="addToCart('Combo Bella',27)">Adicionar à sacola</button></div></div>
+</section>
+<section id="pedido">
+  <div class="section-head"><div class="eyebrow">Quase lá!</div><h2>Finalize seu pedido</h2><p>Confira sua sacola e preencha seus dados.</p></div>
+  <div class="order-area">
+    <div class="panel"><h3>Sua sacola 🛍️</h3><div id="cartItems"><p class="note">Sua sacola ainda está vazia. Escolha seus cookies no cardápio!</p></div><div class="total"><span>Total</span><span id="total">R$ 0,00</span></div><p class="note">Os valores individuais exibidos neste protótipo são sugestões ilustrativas e devem ser confirmados pela Bella Cookies antes de publicar.</p></div>
+    <div class="panel"><h3>Seus dados</h3>
+      <form id="checkout">
+        <label for="name">Nome</label><input id="name" required placeholder="Como podemos te chamar?">
+        <label for="phone">WhatsApp</label><input id="phone" required placeholder="(00) 00000-0000">
+        <label for="delivery">Como prefere receber?</label><select id="delivery"><option>Retirada</option><option>Entrega</option></select>
+        <label for="address">Endereço (se for entrega)</label><input id="address" placeholder="Rua, número e bairro">
+        <label for="obs">Observações</label><textarea id="obs" placeholder="Algum detalhe sobre seu pedido?"></textarea>
+        <button class="primary" type="submit">Montar resumo do pedido</button>
+      </form>
+      <p class="note">Este é um site demonstrativo: não processa pagamentos nem envia pedidos automaticamente. O resumo será exibido para você copiar e encaminhar à loja.</p>
+      <div id="orderResult" style="display:none;margin-top:15px"><textarea id="orderText" readonly></textarea><button class="add" onclick="copyOrder()">Copiar resumo</button></div>
+    </div>
+  </div>
+</section>
+</main>
+<footer><strong>Bella Cookies</strong><br>Cookies artesanais feitos para adoçar seu dia. ♡<br><span style="opacity:.7">Instagram: @bellacookies.oficial · Site demonstrativo</span></footer>
+<div class="toast" id="toast">Adicionado à sacola! ♡</div>
+<script>
+const products=[
+ {name:"Kinder",desc:"Massa artesanal com recheio cremoso e chocolate.",price:15,emoji:"🍫"},
+ {name:"Tradicional",desc:"O clássico cookie com gotas de chocolate.",price:12,emoji:"🍪"},
+ {name:"Ninho",desc:"Doçura e cremosidade com leite em pó.",price:14,emoji:"🥛"},
+ {name:"Pistache",desc:"Um sabor especial, marcante e delicado.",price:16,emoji:"💚"},
+ {name:"M&M",desc:"Cookie colorido, crocante e divertido.",price:14,emoji:"🍬"}
+];
+let cart=[];
+const money=n=>n.toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
+document.getElementById('productGrid').innerHTML=products.map(p=>`<article class="product"><div class="product-art">${p.emoji}</div><div class="product-body"><h3>${p.name}</h3><p>${p.desc}</p><div class="product-foot"><span class="price">${money(p.price)}</span><button class="add" onclick="addToCart('${p.name}',${p.price})">+ Adicionar</button></div></div></article>`).join('');
+function addToCart(name,price){let item=cart.find(x=>x.name===name);if(item)item.qty++;else cart.push({name,price,qty:1});renderCart();const t=document.getElementById('toast');t.style.display='block';setTimeout(()=>t.style.display='none',1500)}
+function renderCart(){document.getElementById('cartCount').textContent=cart.reduce((s,x)=>s+x.qty,0);const el=document.getElementById('cartItems');if(!cart.length){el.innerHTML='<p class="note">Sua sacola ainda está vazia. Escolha seus cookies no cardápio!</p>'}else{el.innerHTML=cart.map((x,i)=>`<div class="cart-line"><span>${x.qty}x ${x.name}</span><span>${money(x.price*x.qty)} <button aria-label="Remover item" onclick="removeItem(${i})" style="border:0;background:none;color:#9a5363;cursor:pointer">✕</button></span></div>`).join('')}document.getElementById('total').textContent=money(cart.reduce((s,x)=>s+x.price*x.qty,0))}
+function removeItem(i){cart.splice(i,1);renderCart()}
+document.getElementById('checkout').addEventListener('submit',e=>{e.preventDefault();if(!cart.length){alert('Adicione pelo menos um item à sacola.');return}const name=document.getElementById('name').value;const phone=document.getElementById('phone').value;const delivery=document.getElementById('delivery').value;const address=document.getElementById('address').value;const obs=document.getElementById('obs').value;let lines=cart.map(x=>`${x.qty}x ${x.name} — ${money(x.price*x.qty)}`).join('\n');let total=cart.reduce((s,x)=>s+x.price*x.qty,0);let msg=`🍪 PEDIDO — BELLA COOKIES\nNome: ${name}\nWhatsApp: ${phone}\n\n${lines}\n\nTotal: ${money(total)}\nRecebimento: ${delivery}${delivery==='Entrega'?'\\nEndereço: '+address:''}${obs?'\\nObservações: '+obs:''}`;document.getElementById('orderText').value=msg;document.getElementById('orderResult').style.display='block'});
+function copyOrder(){const el=document.getElementById('orderText');el.select();document.execCommand('copy');alert('Resumo copiado! Agora você pode encaminhar à Bella Cookies.')}
+document.getElementById('delivery').addEventListener('change',e=>{document.getElementById('address').required=e.target.value==='Entrega'});
+</script>
+</body></html>
